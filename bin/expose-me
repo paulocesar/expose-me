@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/**
+ *  module dependencies
+ */
+
+var program = require('commander')
+  , expose = require (__dirname+'/..')
+  , pkg = require ('../package.json')
+  , version = pkg.version
+  , os = require('os');
+
+//usage
+
+program
+  .version(version)
+  .usage('[config_name]')
+  .parse(process.argv);
+
+//path
+
+var path = '.';
+
+//end of line
+
+var eol = os.EOL;
+
+//expose configuration template
+
+var expconf = [
+    ''
+  , '{'
+  , '  "default": {'
+  , '    "servername": "www.example.com",'
+  , '    "language": "php",'
+  , '    "type": "apache",'
+  , '    "install": "./configure.sh nobody",'
+  , '    "ssh": {'
+  , '      "ssh_host": "example.com:public_html/,"'
+  , '      "ssh_user": "admin",'
+  , '      "ssh_pass": "password"'
+  , '    }'
+  , '  }'
+  , '}'
+].join(eol);
