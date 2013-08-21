@@ -5,7 +5,8 @@
  */
 
 var program = require('commander')
-  , expose = require (__dirname+'/..')
+  , expose = require ('../lib/expose-me')
+  , log = require('../lib/utils/log')
   , path = require ('path')
   , pkg = require ('../package.json')
   , version = pkg.version
@@ -86,6 +87,7 @@ var config_template = [
 function generateExposeMeFile() {
   var exposeMeFile = path.resolve(project,config_file);
   fs.writeFile(exposeMeFile, config_template);
+  log.info('init','creating expose-me.json example file');
 }
 
 

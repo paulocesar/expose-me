@@ -10,12 +10,13 @@ var filepath = path.resolve(project,filename);
 describe('expose-me',function () {
   describe('template file', function () {
 
-    it('should be a valid json file', function () {
+    it('should be a valid json file', function (done) {
       addExposeMeFileTo(project);
       JSON.parse(fs.readFileSync(filepath));
+      done();
     })
     
-    it('should create file',function () {
+    it('should create file',function (done) {
       //clear
       removeExposeMeFileFrom(project);
 
@@ -23,7 +24,9 @@ describe('expose-me',function () {
       exec('./bin/expose-me --init -p '+project, checkFile);
       
       function checkFile(er, stdout, stderr) {
-        assert(true,fs.existsSync(file));
+        if(er) done(er);
+        assert(true,fs.existsSync(filepath));
+        done();
       }
     })
 
