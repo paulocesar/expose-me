@@ -1,0 +1,16 @@
+{
+  "default": {
+    "servername": "www.example.com",
+    "language": "php",
+    "cmd_deploy_before": "./clean.sh",
+    "cmd_deploy_after": "./configure.sh nobody",
+    "servers": [{
+      "host": "example.com",
+      "type": "apache",
+      "port": 22,
+      "username": "admin",
+      "password": "password",
+      "path": "public_html/"
+    }]
+  }
+}
